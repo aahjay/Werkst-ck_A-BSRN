@@ -1,2 +1,2 @@
 # Werkst-ck_A-BSRN
-Werkstück A BSRN 
+Git Repository für das Werkstück A 
