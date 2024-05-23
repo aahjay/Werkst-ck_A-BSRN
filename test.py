@@ -1,4 +1,2 @@
 print("neu")
-uztuzfzug
-hzfthf
-ugiugu
+jzzjfzj
