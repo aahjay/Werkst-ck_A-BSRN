@@ -1,2 +1,2 @@
-print('test')
-print("Es funktioniert")
+import os
+import posix
