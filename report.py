@@ -2,14 +2,11 @@ import time
 
 def report():
 
-
-   
-
     try:
 
         while True:
 
-            message, _ = mq_stat_report.receive()
+            value, _ = value_report.receive()
 
             average, total = struct.unpack('ff', message)
 
@@ -17,4 +14,4 @@ def report():
 
     except KeyboardInterrupt:
 
-        mq_stat_report.close()
+        value_report.close()
