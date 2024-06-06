@@ -2,20 +2,16 @@ import time
 
 def report():
 
-    mq_stat_report = posix_ipc.MessageQueue(MQ_STAT_REPORT)
-
-   
-
     try:
 
         while True:
 
-            message, _ = mq_stat_report.receive()
+            value, _ = value_report.receive()
 
-            mean, total = struct.unpack('ff', message)
+            average, total = struct.unpack('ff', message)
 
-            print(f"Mean: {mean}, Total: {total}")
+            print(f"average: {average}, Total: {total}")
 
     except KeyboardInterrupt:
 
-        mq_stat_report.close()
+        value_report.close()

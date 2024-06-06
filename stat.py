@@ -1,13 +1,13 @@
-import time
+import time   # Zeitmodul importieren, um Verzögerungen einzuführen
 
 def stat():
-    values = []
+    values = []   # Initialisierung einer leere Liste, um die empfangenen Werte zu speichern
     while True:
         value = ()
          if value:
-                value = int(value)
-                values.append(value)
-                mean = sum(values) / len(values)
-                total = sum(values)
+                value = int(value) # Konvertiert den Wert in einen Ganzzahlwert
+                values.append(value) # Fügt den Wert zur Liste der empfangenen Werte hinzu
+                mean = sum(values) / len(values)  # Berechnet den Mittelwert der Werte
+                total = sum(values) # Berechnet die Summe der Werte
 
     
