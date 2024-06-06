@@ -1,7 +1,7 @@
-import time   # Importieren des Zeitmoduls, um Verzögerungen einzuführen
+import time   # Zeitmodul importieren, um Verzögerungen einzuführen
 
 def stat():
-    values = []   # Initialisiere eine leere Liste, um die empfangenen Werte zu speichern
+    values = []   # Initialisierung einer leere Liste, um die empfangenen Werte zu speichern
     while True:
         value = ()
          if value:
