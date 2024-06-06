@@ -1,12 +1,13 @@
 import time
 
-def stat(input_func, output_func):
+def stat():
     values = []
     while True:
-        value = input_func()
-        if value is not None:
-            values.append(value)
-            mean = sum(values) / len(values)
-            total = sum(values)
-            output_func(mean, total)
+        value = ()
+         if value:
+                value = int(value)
+                values.append(value)
+                mean = sum(values) / len(values)
+                total = sum(values)
+
     
