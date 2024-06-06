@@ -3,6 +3,6 @@ import random
 
 
 def conv():
-    r_numbers = random.randint(1, 100)
-    print(r_numbers)
+    conv_values = random.randint(1, 100)
+    print(conv_values)
     time.sleep(5)
