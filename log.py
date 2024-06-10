@@ -5,3 +5,4 @@ def log():
     with open('log.txt', 'a') as file:
         # schreibt die Werte aus conv in die Datei 'log.txt'
         file.write(conv_values + ' \n')
+        print(miau)
