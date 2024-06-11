@@ -4,10 +4,10 @@ import sys
 
 # Pfade zu den einzelnen Skripten
 scripts = {
-    "conv": "Conv.py",
-    "log": "Log.py",
-    "stat": "Stat.py",
-    "report": "Report.py"
+    "conv": "conv.py",
+    "log": "log.py",
+    "stat": "stat.py",
+    "report": "report.py"
 }
 
 # Liste der gestarteten Kindprozesse
