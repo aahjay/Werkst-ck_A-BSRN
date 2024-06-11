@@ -7,5 +7,3 @@ def stat():
                 values.append(conv_value) # Fügt den Wert zur Liste der empfangenen Werte hinzu
                 mean = sum(values) / len(values)  # Berechnet den Mittelwert der Werte
                 total = sum(values) # Berechnet die Summe der Werte
-
-    
