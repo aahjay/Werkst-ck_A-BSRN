@@ -18,7 +18,7 @@ def convHandleClient(clientSocket):
         
 def convServer():
     serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Erstellung Sever Socket
-    serverSocket.bind(('localhost', 9999)) #Bindung des Servers an Adresse und Port
+    serverSocket.bind(('0.0.0.0', 9999)) #Bindung des Servers an Adresse und Port
     serverSocket.listen(5) #Server wartet auf eingehende Verbindungen
 
     while True:
