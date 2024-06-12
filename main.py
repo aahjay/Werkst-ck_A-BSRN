@@ -21,3 +21,10 @@ def fork_and_exec(script):
     else:
         # Elternprozess: Rückgabe der PID des Kindprozesses
         return pid
+
+try:
+    # Starten der einzelnen Prozesse
+    for name, script in scripts.items():
+        pid = fork_and_exec(script)
+        processes.append(pid)
+
