@@ -27,6 +27,8 @@ try:
     for name, script in scripts.items():
         pid = fork_and_exec(script)
         processes.append(pid)
-
+        
+    for process in processes:
+        process.wait()
 except Exception as e:
     print("Fehler beim Starten der Prozesse:  {e}")
