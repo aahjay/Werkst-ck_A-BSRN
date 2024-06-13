@@ -13,6 +13,12 @@ scripts = {
 # Liste der gestarteten Kindprozesse
 processes = []
 
+def signal_handler(sig, frame):
+    # Beenden Sie alle gestarteten Prozesse
+    for process in processes:
+        process.terminate()
+    sys.exit(0)
+    
 def fork_and_exec(script):
     pid = os.fork()
     if pid == 0:
