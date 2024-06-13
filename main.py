@@ -28,8 +28,5 @@ try:
         pid = fork_and_exec(script)
         processes.append(pid)
 
-    # Warten bis alle Prozesse beendet worden sind
-for process in processes: 
-    process.wait()
-except Exception as e: 
-    print(f "Fehler beim Starten der Prozesse:  {e}") 
+except Exception as e:
+    print("Fehler beim Starten der Prozesse:  {e}")
