@@ -1,7 +1,6 @@
 import os
 import signal
 import sys
-import time
 
 # Pfade zu den einzelnen Skripten
 scripts = {
@@ -25,14 +24,7 @@ def fork_and_exec(script):
 
 try:
     # Starten der einzelnen Prozesse
-    #for name, script in scripts.items():
-     #   pid = fork_and_exec(script)
-      #  processes.append(pid)
-    pidConv = fork_and_exec(scripts["conv"])
-    processes.append(pidConv)
-    time.sleep(3)
-    pidLog = fork_and_exec(scripts["log"])
-    processes.append(pidLog)
+    for name, script in scripts.items():
+        pid = fork_and_exec(script)
+        processes.append(pid)
 
-except Exception as e:
-    print(f"Fehler beim Starten der Prozesse: {e}")
