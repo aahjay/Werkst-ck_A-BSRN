@@ -1,0 +1,74 @@
+import os
+import random
+import time
+# Named Pipes
+CONV_LOG_PIPE = '/tmp/conv_log_fifo'
+CONV_STAT_PIPE = '/tmp/conv_stat_fifo'
+STAT_REPORT_PIPE = '/tmp/stat_report_fifo'
+
+# Erstellen von Named Pipes (FIFO)
+for pipe in [CONV_LOG_PIPE, CONV_STAT_PIPE, STAT_REPORT_PIPE]:
+    if not os.path.exists(pipe):
+        os.mkfifo(pipe)
+
+def conv():
+    while True:
+        value = random.randint(0, 100)
+        # Plausibilitätsprüfung
+        if value < 0 or value > 100:
+            value = 0  # Beispiel für eine einfache Plausibilitätsprüfung
+
+        # Schreiben in die Named Pipes
+        with open(CONV_LOG_PIPE, 'w') as fifo_log:
+            fifo_log.write(f"{value}\n")
+        with open(CONV_STAT_PIPE, 'w') as fifo_stat:
+            fifo_stat.write(f"{value}\n")
+
+        time.sleep(5)  # Simulierte Zeitverzögerung
+
+def log():
+    with open('log.txt', 'a') as logfile:
+        while True:
+            with open(CONV_LOG_PIPE, 'r') as fifo:
+                value = fifo.read().strip()
+                if value:
+                    logfile.write(f"{value}\n")
+                    logfile.flush()  # Sicherstellen, dass die Daten sofort geschrieben werden
+
+def stat():
+    values = []
+    while True:
+        with open(CONV_STAT_PIPE, 'r') as fifo:
+            value = fifo.read().strip()
+            if value:
+                value = int(value)
+                values.append(value)
+                mean = sum(values) / len(values)
+                total = sum(values)
+
+                # Schreiben der Statistikdaten in die Named Pipe
+                with open(STAT_REPORT_PIPE, 'w') as fifo_stat:
+                    fifo_stat.write(f"{mean},{total}\n")
+
+def report():
+    while True:
+        with open(STAT_REPORT_PIPE, 'r') as fifo:
+            data = fifo.read().strip()
+            if data:
+                mean, total = data.split(',')
+                print(f"Mean: {mean}, Total: {total}")
+
+if __name__ == '__main__':
+    processes = [
+        multiprocessing.Process(target=conv),
+        multiprocessing.Process(target=log),
+        multiprocessing.Process(target=stat),
+        multiprocessing.Process(target=report)
+    ]
+
+    for p in processes:
+        p.start()
+
+    for p in processes:
+        p.join()
+
