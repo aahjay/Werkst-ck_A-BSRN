@@ -18,6 +18,9 @@ def signal_handler(sig, frame):
     for process in processes:
         process.terminate()
     sys.exit(0)
+
+ # Setzen Sie den Signal-Handler für SIGINT
+signal.signal(signal.SIGINT, signal_handler)
     
 def fork_and_exec(script):
     pid = os.fork()
