@@ -28,3 +28,5 @@ try:
         pid = fork_and_exec(script)
         processes.append(pid)
 
+except Exception as e:
+    print("Fehler beim Starten der Prozesse:  {e}")
