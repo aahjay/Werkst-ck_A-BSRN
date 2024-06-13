@@ -32,3 +32,4 @@ try:
         process.wait()
 except Exception as e:
     print("Fehler beim Starten der Prozesse:  {e}")
+
