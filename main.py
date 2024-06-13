@@ -36,6 +36,8 @@ try:
         
     for process in processes:
         process.wait()
+
+    # Abfangen von Fehlern bei der Ausführung
 except Exception as e:
     print("Fehler beim Starten der Prozesse:  {e}")
-
+    signal_handler(None, None)
