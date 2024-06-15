@@ -20,7 +20,8 @@ def convServer():
     serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Erstellung Sever Socket
     serverSocket.bind(('0.0.0.0', 9999)) #Bindung des Servers an Adresse und Port
     serverSocket.listen(5) #Server wartet auf eingehende Verbindungen
-    clientSocket, clientAdress = serverSocket.accept()  # eingehende Verbindungen von Clients annehmen
+    while True:
+        clientSocket, clientAdress = serverSocket.accept()  # eingehende Verbindungen von Clients annehmen
 
     '''while True:
         clientSocket, clientAdress = serverSocket.accept() #eingehende Verbindungen von Clients annehmen
