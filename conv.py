@@ -1,6 +1,6 @@
 import time
 import random
-import threading
+#import threading
 import socket
 
 #Diese Funktion erstellt zufällige Zahlen, die anschließend in der Konsole ausgegeben werden
@@ -20,11 +20,12 @@ def convServer():
     serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Erstellung Sever Socket
     serverSocket.bind(('0.0.0.0', 9999)) #Bindung des Servers an Adresse und Port
     serverSocket.listen(5) #Server wartet auf eingehende Verbindungen
+    clientSocket, clientAdress = serverSocket.accept()  # eingehende Verbindungen von Clients annehmen
 
-    while True:
+    '''while True:
         clientSocket, clientAdress = serverSocket.accept() #eingehende Verbindungen von Clients annehmen
         clientThread = threading.Thread(target=convHandleClient, args=(clientSocket,)) #Erstellung thread für Funktion convHandleCLient()
         clientThread.start() #thread starten
 
 serverThread = threading.Thread(target=convServer) #Erstellung thread für convServer()
-serverThread.start() #thread starten
+serverThread.start() #thread starten'''

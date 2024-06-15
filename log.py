@@ -1,4 +1,4 @@
-import threading
+#import threading
 import socket
 
 def logClientSocket():
@@ -13,5 +13,5 @@ def logClientSocket():
             file.flush()
             print('logged ' + str(conv_values))
 
-logThread = threading.Thread(target=logClientSocket) #thread für logCLientSocket()
-logThread.start()
+#logThread = threading.Thread(target=logClientSocket) #thread für logCLientSocket()
+#logThread.start()
