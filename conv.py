@@ -5,7 +5,7 @@ from multiprocessing import shared_memory, Semaphore
 
 def conv():
 
-    # Namen für die Shared Memory Bereiche und Semaphoren für log und stat
+    # Festlegung der Namen für die Shared Memory Bereiche und Semaphoren für log und stat
     SHM_NAME_LOG = "shm_log"
     SHM_NAME_STAT = "shm_stat"
     SEM_NAME_LOG = "sem_log"
@@ -30,4 +30,3 @@ def conv():
         sem_log.release()
         sem_stat.release()
         time.sleep(5)
-
