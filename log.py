@@ -1,4 +1,3 @@
-import threading
 from multiprocessing import shared_memory, Semaphore
 
 
@@ -11,5 +10,9 @@ def log():
 
     # öffnet eine neue log-Datei (Textdokument) bzw. die bereits im Verzeichnis existierende log-Datei
     with open('log.txt', 'a') as file:
+        while True:
+            sem_log.acquire()
+            conv_values = int.from_bytes(shm_log.buf[0:4], byteorder='little')
+            sem_log.release()
         # schreibt die Werte aus conv in die Datei 'log.txt'
-        file.write(conv_values + ' \n')
+            file.write(f"{conv_values}\n")
