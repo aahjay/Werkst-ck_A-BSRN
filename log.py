@@ -1,9 +1,16 @@
-#import threading
 import socket
 
 def logClientSocket():
-    logClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    logClient.connect(('127.0.0.1', 9999))
+    while True:
+        try:
+            logClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            logClient.connect(('127.0.0.1', 9998))
+            print("Connected to Conv server on port 9998")
+            break
+        except ConnectionRefusedError:
+            print("Waiting for conv server...")
+            time.sleep(2)
+
     with open('log.txt', 'a', buffering = 1) as file: #öffnet eine neue log-Datei (Textdokument) bzw. die bereits im Verzeichnis existierende log-Datei
         while True:
             conv_values = logClient.recv(1024).decode() #empfängt Daten vom Server (in diesem Fall der conv Server, der die generierten Messwerte enthält)
@@ -13,5 +20,5 @@ def logClientSocket():
             file.flush()
             print('logged ' + str(conv_values))
 
-#logThread = threading.Thread(target=logClientSocket) #thread für logCLientSocket()
-#logThread.start()
+if __name__ == "__main__":
+    logClientSocket()

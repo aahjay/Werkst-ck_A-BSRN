@@ -13,6 +13,7 @@ def statHandleClient(client_socket):
             values.append(conv_value) # Fügt den Wert zur Liste der empfangenen Werte hinzu
             mean = sum(values) / len(values)  # Berechnet den Mittelwert der Werte
             total = sum(values) # Berechnet die Summe der Werte
+            print(f"Stat calculated - Mean: {mean}, Total: {total}")
             statClient(mean, total)
     finally:
         client_socket.close()
@@ -27,8 +28,15 @@ def statClient(mean, total):
 def statServer():
     #Server, der eingehende Verbindungen von Conv annimmt
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(('0.0.0.0', 8888))
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server_socket.bind(('0.0.0.0', 9999))
     server_socket.listen(5)
+    print("Stat server is listening on port 9999")
     while True:
         client_socket, client_address = server_socket.accept()
+        print(f"Accepted connection from {client_address}")
         statHandleClient(client_socket)
+
+
+if __name__ == "__main__":
+    statServer()
