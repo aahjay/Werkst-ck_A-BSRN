@@ -15,11 +15,11 @@ processes = []
 
 def signal_handler(sig, frame):
     # Beenden Sie alle gestarteten Prozesse
-    for process in processes:
+    for process in processes:  
         process.terminate()
     sys.exit(0)
 
- # Setzen Sie den Signal-Handler für SIGINT
+# Setzen des Signal-Handlers für SIGINT
 signal.signal(signal.SIGINT, signal_handler)
     
 def fork_and_exec(script):
