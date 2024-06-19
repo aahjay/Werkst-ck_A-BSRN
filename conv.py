@@ -18,6 +18,7 @@ def conv():
     sem_stat = Semaphore(SEM_NAME_STAT, create=True, initial_value=1)
 
     while True:
+        # Erwerben der Semaphoren für die Shared Memory Bereiche log und stat
         sem_log.acquire()
         sem_stat.acquire()
         # Generierung und Ausgabe von simulierten Werten
