@@ -14,7 +14,8 @@ def statHandleClient(client_socket):
             mean = sum(values) / len(values)  # Berechnet den Mittelwert der Werte
             total = sum(values) # Berechnet die Summe der Werte
             statClient(mean, total)
-    finally: client_socket.close()
+    finally:
+        client_socket.close()
 
 def statClient(mean, total):
     #Erstellung eiens Clients, der die von Stat verarbeiteten Daten an Report sendet
@@ -24,9 +25,10 @@ def statClient(mean, total):
     clientSocket.close()
 
 def statServer():
-    #Server, der eingehende Verbindungen von Report anzunehmen
+    #Server, der eingehende Verbindungen von Conv annimmt
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(('0.0.0.0', 9999))
+    server_socket.bind(('0.0.0.0', 8888))
     server_socket.listen(5)
     while True:
         client_socket, client_address = server_socket.accept()
+        statHandleClient(client_socket)
