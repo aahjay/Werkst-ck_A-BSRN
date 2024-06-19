@@ -14,7 +14,7 @@ scripts = {
 processes = []
 
 def signal_handler(sig, frame):
-    # Beenden Sie alle gestarteten Prozesse
+    # Beenden aller gestarteten Prozesse
     for process in processes:  
         process.terminate()
     sys.exit(0)
@@ -25,7 +25,7 @@ signal.signal(signal.SIGINT, signal_handler)
 def fork_and_exec(script):
     pid = os.fork()
     if pid == 0:
-        # Kindprozess: Ersetze den Prozess durch das jeweilige Skript (Übergabeparameter d. Funktion)
+        # Kindprozess: Ersetzen des Prozess durch das jeweilige Skript (Übergabeparameter d. Funktion)
         os.execlp(sys.executable, sys.executable, script)
     else:
         # Elternprozess: Rückgabe der PID des Kindprozesses
