@@ -1,6 +1,6 @@
 import socket
 
-def reportHandleCLient(client_socket):
+def reportHandleCLient(clientSocket):
     #entschlüsselt Daten von stat und gibt diese aus
     try:
         while True:
@@ -11,4 +11,13 @@ def reportHandleCLient(client_socket):
     finally:
         client_socket.close()
         
+
+def reportServer():
+    #Server um Verbindung zu Stat aufzunehmen
+    serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    serverSocket.bind(('0.0.0.0', 10000))
+    serverSocket.listen(5)
+    while True:
+        clientSocket, ClientAddress = serverSocket.accept()
+        reportHandleCLient(clientSocket)
         
