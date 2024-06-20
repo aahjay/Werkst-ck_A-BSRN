@@ -1,8 +1,18 @@
-import time
 import random
+import time
+import posix_ipc
+import struct
 
-#Diese Funktion erstellt zufällige Zahlen, die anschließend in der Konsole ausgegeben werden
 def conv():
-    conv_values = random.randint(1, 100)
-    print(conv_values)
-    time.sleep(5)
+    mq_conv_log = posix_ipc.MessageQueue("/mq_conv_log", posix_ipc.O_CREAT, max_messages=10, max_message_size=128)
+    mq_conv_stat = posix_ipc.MessageQueue("/mq_conv_stat", posix_ipc.O_CREAT, max_messages=10, max_message_size=128)   
+
+    try:
+        while True:
+            value = random.randint(1, 100)
+            mq_conv_log.send(struct.pack('i', value))
+            mq_conv_stat.send(struct.pack('i', value))
+            time.sleep(1)
+    except KeyboardInterrupt:
+        mq_conv_log.close()
+        mq_conv_stat.close()
