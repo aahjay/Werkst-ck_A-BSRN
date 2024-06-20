@@ -21,11 +21,12 @@ def convServer():
     serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     serverSocket.bind(('0.0.0.0', 9998)) #Bindung des Servers an Adresse und Port
     serverSocket.listen(5) #Server wartet auf eingehende Verbindungen
-    print("[CONV] server is listening on port 9998")
+    print("[CONV] server is listening on port 9998 \n")
     while True:
         clientSocket, clientAddress = serverSocket.accept()  # eingehende Verbindungen von Clients annehmen
-        print(f"Accepted connection from {clientAddress}")
-        convHandleClient(clientSocket)
+        print(f"Accepted connection from {clientAddress} \n")
+        clientThread = threading.Thread(target=convHandleClient, args=(clientSocket,))
+        clientThread.start()
 
 if __name__ == "__main__":
     convServer()

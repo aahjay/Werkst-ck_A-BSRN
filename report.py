@@ -1,6 +1,6 @@
 import socket
 
-def reportHandleClient():
+def reportHandleClient(clientSocket):
     while True:
         try:
             repClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

@@ -40,7 +40,7 @@ try:
     for name, script in scripts.items():
         pid = fork_and_exec(script)
         time.sleep(2)
-        print(f"Starting {name} process...")
+        print(f"Starting {name} process...\n")
         processes.append(pid)
         
     for pid in processes:

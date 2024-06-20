@@ -5,7 +5,7 @@ def logClientSocket():
         try:
             logClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             logClient.connect(('127.0.0.1', 9998))
-            print("[LOG] Connected to [CONV] server on port 9998")
+            print("[LOG] Connected to [CONV] server on port 9998 \n")
             break
         except ConnectionRefusedError:
             print("Waiting for [CONV] server...")
