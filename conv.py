@@ -12,7 +12,7 @@ def conv():
             value = random.randint(1, 100)
             mq_conv_log.send(struct.pack('i', value))
             mq_conv_stat.send(struct.pack('i', value))
-            time.sleep(1)
+            time.sleep(5)
     except KeyboardInterrupt:
         mq_conv_log.close()
         mq_conv_stat.close()

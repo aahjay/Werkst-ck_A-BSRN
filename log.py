@@ -12,6 +12,6 @@ def log():
                 value = struct.unpack('i', message)[0]
                 log_file.write(f"{value}\n")
                 log_file.flush()
-                time.sleep(1)
+                time.sleep(5)
     except KeyboardInterrupt:
         mq_conv_log.close()
