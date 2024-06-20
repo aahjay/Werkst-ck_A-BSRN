@@ -1,6 +1,8 @@
 import os
 import signal
 import sys
+import time
+from multiprocessing import shared_memory
 
 # Pfade zu den einzelnen Skripten
 scripts = {
@@ -13,10 +15,22 @@ scripts = {
 # Liste der gestarteten Kindprozesse
 processes = []
 
+SHM_NAMES = ["shm_log", "shm_stat", "shm_stat_report"]
+SEM_NAMES = ["sem_log", "sem_stat", "sem_stat_report"]
+
+
+def cleanup(): # Funktion zur Schließung und Freigabe aller initialisierten Shared Memory Segmente
+    for shm_name in SHM_NAMES:
+        shm = shared_memory.SharedMemory(name=shm_name)
+        shm.close()
+        shm.unlink()
+
 def signal_handler(sig, frame):
     # Beenden aller gestarteten Prozesse
-    for process in processes:  
-        process.terminate()
+    for pid in processes:
+        os.kill(pid, signal.SIGTERM)
+    cleanup()
+    print("cleaning up...")
     sys.exit(0)
 
 # Setzen des Signal-Handlers für SIGINT
@@ -35,10 +49,14 @@ try:
     # Starten der einzelnen Prozesse
     for name, script in scripts.items():
         pid = fork_and_exec(script)
+        print(f"{name} started")
+        time.sleep(2)
         processes.append(pid)
         
-    for process in processes:
-        process.wait()
+    for pid in processes:
+        os.waitpid(pid, 0)
+
+    cleanup()
 
     # Abfangen von Fehlern bei der Ausführung
 except Exception as e:
