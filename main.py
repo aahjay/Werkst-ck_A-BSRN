@@ -23,7 +23,7 @@ def signal_handler(sig, frame):
             pass
     sys.exit(0)
 
- # Setzen Sie den Signal-Handler für SIGINT
+ # Signal-Handler für SIGINT
 signal.signal(signal.SIGINT, signal_handler)
     
 def fork_and_exec(script):
