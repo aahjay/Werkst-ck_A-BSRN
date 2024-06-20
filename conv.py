@@ -9,9 +9,9 @@ def convHandleClient(clientSocket):
     try:
         while True:
             conv_values = random.randint(1, 100)
-            print(str(conv_values))
+            #print(str(conv_values))
             clientSocket.sendall(str(conv_values).encode()) #sendet den zuvor mit random generierten Wert verschlüsselt an den Server Socket
-            print("sent " + str(conv_values) + "\n")
+            print("[CONV] sent " + str(conv_values) + "\n")
             time.sleep(5)
     finally: 
         clientSocket.close() #client Socket wird geschlossen; geht keine Verbindungen mehr ein
@@ -21,7 +21,7 @@ def convServer():
     serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     serverSocket.bind(('0.0.0.0', 9998)) #Bindung des Servers an Adresse und Port
     serverSocket.listen(5) #Server wartet auf eingehende Verbindungen
-    print("Conv server is listening on port 9998")
+    print("[CONV] server is listening on port 9998")
     while True:
         clientSocket, clientAddress = serverSocket.accept()  # eingehende Verbindungen von Clients annehmen
         print(f"Accepted connection from {clientAddress}")

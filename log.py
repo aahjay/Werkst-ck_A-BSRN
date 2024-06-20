@@ -5,10 +5,10 @@ def logClientSocket():
         try:
             logClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             logClient.connect(('127.0.0.1', 9998))
-            print("log Connected to Conv server on port 9998")
+            print("[LOG] Connected to [CONV] server on port 9998")
             break
         except ConnectionRefusedError:
-            print("Waiting for conv server...")
+            print("Waiting for [CONV] server...")
             time.sleep(2)
 
     with open('log.txt', 'a', buffering = 1) as file: #öffnet eine neue log-Datei (Textdokument) bzw. die bereits im Verzeichnis existierende log-Datei
@@ -18,7 +18,7 @@ def logClientSocket():
                 break
             file.write(conv_values + '\n') #schreibt die Werte aus conv in die Datei 'log.txt'
             file.flush()
-            print('logged ' + str(conv_values))
+            print('[LOG] logged ' + str(conv_values) + '\n')
 
 if __name__ == "__main__":
     logClientSocket()
