@@ -1,16 +1,23 @@
 import socket
 
-def reportHandleCLient(clientSocket):
-    #entschlüsselt Daten von stat und gibt diese aus
-    try:
+def reportHandleClient():
+    while True:
+        try:
+            repClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            repClient.connect(('127.0.0.1', 9999))
+            print("report connected to stat server on port 9999")
+            break
+        except ConnectionRefusedError:
+            print("Waiting for stat server...")
+            time.sleep(2)
         while True:
             data = clientSocket.recv(1024).decode()
             if not data:
                 break
             mean, total = data.split(',')
             print(data)
-    finally:
-        clientSocket.close()
+        #finally:
+         #   clientSocket.close()
         
 
 def reportServer():
@@ -23,7 +30,7 @@ def reportServer():
     while True:
         clientSocket, ClientAddress = serverSocket.accept()
         print(f"Accepted connection from {addr}")
-        reportHandleCLient(clientSocket)
+        reportHandleClient(clientSocket)
         
 if __name__ == "__main__":
     reportServer()

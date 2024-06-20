@@ -1,11 +1,15 @@
 import socket
 import time
 
-def statHandleClient(client_socket):
+def statHandleClient():
     values = []   # Initialisierung einer leeren Liste, um die empfangenen Werte zu speichern
-    try:
-        while True:
-            conv_values = client_socket.recv(1024).decode()
+
+    while True:
+        try:
+            convClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            convClient.connect(('127.0.0.1', 9998))
+            print("stat Connected to Conv server on port 9998")
+            conv_values = convClient.recv(1024).decode()
             #value = ()
             if not conv_values:
                 break
@@ -14,9 +18,11 @@ def statHandleClient(client_socket):
             mean = sum(values) / len(values)  # Berechnet den Mittelwert der Werte
             total = sum(values) # Berechnet die Summe der Werte
             print(f"Stat calculated - Mean: {mean}, Total: {total}")
+            convClient.sendall(str(mean).encode() + str(total).encode())
+            print("Stat sent to Conv server")
             statClient(mean, total)
-    finally:
-        client_socket.close()
+        finally:
+            convClient.close()
 
 def statClient(mean, total):
     #Erstellung eiens Clients, der die von Stat verarbeiteten Daten an Report sendet
@@ -39,4 +45,4 @@ def statServer():
 
 
 if __name__ == "__main__":
-    statServer()
+    statHandleClient()

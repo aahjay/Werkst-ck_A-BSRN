@@ -17,7 +17,7 @@ def convHandleClient(clientSocket):
         clientSocket.close() #client Socket wird geschlossen; geht keine Verbindungen mehr ein
         
 def convServer():
-    serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Erstellung Sever Socket
+    serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Erstellung Server Socket
     serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     serverSocket.bind(('0.0.0.0', 9998)) #Bindung des Servers an Adresse und Port
     serverSocket.listen(5) #Server wartet auf eingehende Verbindungen
