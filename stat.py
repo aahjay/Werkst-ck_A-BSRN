@@ -1,7 +1,7 @@
 import socket
 import time
 
-#Client Socket, der die Daten vom Conv Server empfängt
+#Erstellung Client Socket, der die Daten vom Conv Server empfängt
 def statClientSocket():
     values = []   # Initialisierung einer leeren Liste, um die empfangenen Werte zu speichern
     statClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -27,7 +27,7 @@ def statClientSocket():
             break
 
 
-#Client Socket, der die Daten an Report übermittelt
+#Erstellung Client Socket, der die Daten an den Report Server übermittelt
 def sendReport(mean, total):
     try:
         clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
