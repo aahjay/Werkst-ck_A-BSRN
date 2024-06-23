@@ -7,9 +7,8 @@ import time
 scripts = {
     "conv": "conv.py",
     "log": "log.py",
-    #"stat": "stat.py",
-    "report": "report.py",
-    "stat": "stat.py"
+    "stat": "stat.py",
+    "report": "report.py"
 }
 
 # Liste der gestarteten Kindprozesse
