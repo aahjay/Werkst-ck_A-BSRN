@@ -15,7 +15,8 @@ def log():
             while True:
                 # Erwerben der Semaphore für das Shared Memory Segment log
                 sem_log.acquire()
-                # Lesen der Werte aus dem Shared Memory Segment
+                # Lesen der Werte aus dem Shared Memory Segment.
+                    # Die ersten 4 Bytes des shm_log werden in einen Integer umgewandelt und in der Variable gespeichert
                 conv_value = int.from_bytes(shm_log.buf[0:4], byteorder='little')
                 # Freigabe der Semaphore
                 sem_log.release()

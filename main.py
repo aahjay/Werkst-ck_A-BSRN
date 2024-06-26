@@ -4,7 +4,7 @@ import sys
 import time
 from multiprocessing import shared_memory
 
-# Pfade zu den einzelnen Skripten
+# Dictionary, um Skripte ohne ".py" zu verwenden
 scripts = {
     "conv": "conv.py",
     "log": "log.py",
@@ -14,21 +14,23 @@ scripts = {
 
 # Liste der gestarteten Kindprozesse
 processes = []
-
+# Liste der Namen aller Shared Memory Segmente, die initialisiert werden.
 SHM_NAMES = ["shm_log", "shm_stat", "shm_stat_report"]
 SEM_NAMES = ["sem_log", "sem_stat", "sem_stat_report"]
 
-
-def cleanup(): # Funktion zur Schließung und Freigabe aller initialisierten Shared Memory Segmente
+# Funktion zur Schließung und auslöschung aller initialisierten Shared Memory Segmente
+def cleanup():
     for shm_name in SHM_NAMES:
         shm = shared_memory.SharedMemory(name=shm_name)
         shm.close()
+        # unlink() Funktion der Shared Memory Klasse dient zur auslöschung des Shared Memory Segments
         shm.unlink()
 
 def signal_handler(sig, frame):
     # Beenden aller gestarteten Prozesse
     for pid in processes:
         os.kill(pid, signal.SIGTERM)
+    #Aufruf der cleanup() Funktion -> alle Shared Memory Segmente werden geschlossen und zerstört
     cleanup()
     print("cleaning up...")
     sys.exit(0)

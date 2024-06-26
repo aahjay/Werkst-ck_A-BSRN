@@ -34,6 +34,7 @@ def stat():
             conv_values.append(conv_value)
             # Freigabe der Semaphore
             sem_stat.release()
+            # Aufruf der calculate_stats() Funktion
             print("calculating stats")
             mean, total = calculate_stats()
             # Erwerben der Semaphore für das Shared Memory Segment von stat und report
