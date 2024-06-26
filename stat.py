@@ -35,13 +35,13 @@ def stat():
             # Freigabe der Semaphore
             sem_stat.release()
             print("calculating stats")
-            total, mean = calculate_stats()
+            mean, total = calculate_stats()
             # Erwerben der Semaphore für das Shared Memory Segment von stat und report
             sem_stat_report.acquire()
             # Übergabe der Berechneten Werte in den Shared Memory Segment von stat und report
             print("sending mean and total to shm_stat_report")
             shm_stat_report.buf[0:4] = total.to_bytes(4, byteorder='little')
-            shm_stat_report.buf[0:4] = mean.to_bytes(4, byteorder='little')
+            shm_stat_report.buf[4:8] = mean.to_bytes(4, byteorder='little')
             # Freigabe der Semaphore
             sem_stat_report.release()
             time.sleep(5)

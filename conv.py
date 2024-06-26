@@ -18,9 +18,8 @@ def conv():
             # Erwerben der Semaphoren für die Shared Memory Segmente log und stat
             sem_log.acquire()
             sem_stat.acquire()
-            # Generierung und Ausgabe von simulierten Werten
+            # Generierung der simulierten Werten
             conv_values = random.randint(0, 100)
-            print(conv_values)
             # Schreiben der simulierten Werte in die Shared Memory Segmente
             shm_log.buf[0:4] = conv_values.to_bytes(4, byteorder='little')
             shm_stat.buf[0:4] = conv_values.to_bytes(4, byteorder='little')
