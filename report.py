@@ -10,6 +10,6 @@ def report():
             message, _ = mq_stat_report.receive()
             mean, total = struct.unpack('2i', message)
             print(f"Mean: {mean}, Total: {total}")
-            time.sleep(5)
+            time.sleep(2)
     except KeyboardInterrupt:
         mq_stat_report.close()

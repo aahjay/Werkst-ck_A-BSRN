@@ -17,7 +17,7 @@ def stat():
             mean = sum(values) / len(values)
             total = sum(values)
             mq_stat_report.send(struct.pack('2i', int(mean), total))
-            time.sleep(5)
+            time.sleep(2)
 
     except KeyboardInterrupt:
         mq_conv_stat.close()
