@@ -1,18 +1,16 @@
 import os
 
-# Benannte Pipe zum Lesen öffnen
-if not os.path.exists('conv_to_stat'):
+if not os.path.exists('conv_to_stat'): #Pipe lesen, falls vorhanden
     pass
-if not os.path.exists('stat_to_report'):
+if not os.path.exists('stat_to_report'): #Pipe erstellen, falls noch nicht vorhanden
     os.mkfifo('stat_to_report')
 
 def stat():
     try:
-        with open('conv_to_stat', 'r') as pipe_stat, open('stat_to_report', 'a') as log_report:
-            values = []
+        with open('conv_to_stat', 'r') as pipe_stat, open('stat_to_report', 'a') as log_report: # Pipes öffnen
+            values = [] #Array erstellen, um Summe und Mittelwert zu berechnen
             while True:
-                # Messwerte aus der Pipe lesen
-                value = pipe_stat.readline().strip()
+                value = pipe_stat.readline().strip() # Messwerte aus der Pipe lesen
                 if value:
                     values.append(float(value))
                     total = sum(values)
