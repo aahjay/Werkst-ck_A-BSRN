@@ -16,14 +16,14 @@ scripts = {
 processes = []
 # Liste der Namen aller Shared Memory Segmente, die initialisiert werden.
 SHM_NAMES = ["shm_log", "shm_stat", "shm_stat_report"]
-SEM_NAMES = ["sem_log", "sem_stat", "sem_stat_report"]
 
-# Funktion zur Schließung und auslöschung aller initialisierten Shared Memory Segmente
+
+# Funktion zur Schließung und Auslöschung aller initialisierten Shared Memory Segmente
 def cleanup():
     for shm_name in SHM_NAMES:
         shm = shared_memory.SharedMemory(name=shm_name)
         shm.close()
-        # unlink() Funktion der Shared Memory Klasse dient zur auslöschung des Shared Memory Segments
+        # unlink() Funktion der Shared Memory Klasse dient zur Auslöschung des Shared Memory Segments
         shm.unlink()
 
 def signal_handler(sig, frame):
@@ -62,5 +62,5 @@ try:
 
     # Abfangen von Fehlern bei der Ausführung
 except Exception as e:
-    print("Fehler beim Starten der Prozesse:  {e}")
-    signal_handler(None, None)
+        print("Fehler beim Starten der Prozesse:  {e}")
+        signal_handler(None, None)
