@@ -58,7 +58,6 @@ try:
     for pid in processes:
         os.waitpid(pid, 0)
 
-    cleanup()
 
     # Abfangen von Fehlern bei der Ausführung
 except Exception as e:
