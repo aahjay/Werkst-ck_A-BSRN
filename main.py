@@ -3,7 +3,7 @@ import signal
 import sys
 import time
 
-# Pfade zu den einzelnen Skripten
+# dictionary für die Prozess-Skripte
 scripts = {
     "conv": "conv.py",
     "log": "log.py",
@@ -15,9 +15,10 @@ scripts = {
 processes = []
 
 def signal_handler(sig, frame):
-    # Beenden Sie alle gestarteten Prozesse
+    # Beenden aller gestarteten Prozesse
     for pid in processes:
         try:
+            print('-- terminating processes --')
             os.kill(pid, signal.SIGTERM)
         except OSError:
             pass
@@ -48,5 +49,5 @@ try:
 
     # Abfangen von Fehlern bei der Ausführung
 except Exception as e:
-    print("Fehler beim Starten der Prozesse:  {e}")
+    print("-- Fehler beim Starten der Prozesse --")
     signal_handler(None, None)
