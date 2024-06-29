@@ -15,3 +15,6 @@ def log():
                 time.sleep(2)
     except KeyboardInterrupt: #Beim Beenden des Programms werden Message Queues geschlossen
         mq_conv_log.close()
+
+if __name__ == "__main__":
+    log()

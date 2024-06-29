@@ -13,3 +13,6 @@ def report():
             time.sleep(2)
     except KeyboardInterrupt: #Beim Beenden des Programms werden Message Queues geschlossen
         mq_stat_report.close()
+
+if __name__ == "__main__":
+    report()

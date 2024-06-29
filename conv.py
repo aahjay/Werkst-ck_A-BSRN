@@ -17,3 +17,6 @@ def conv():
     except KeyboardInterrupt: #Beim Beenden des Programms werden Message Queues geschlossen
         mq_conv_log.close()
         mq_conv_stat.close()
+
+if __name__ == "__main__":
+    conv()

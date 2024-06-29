@@ -23,4 +23,5 @@ def stat():
         mq_conv_stat.close()
         mq_stat_report.close()
 
-    
+if __name__ == "__main__":
+    stat()
