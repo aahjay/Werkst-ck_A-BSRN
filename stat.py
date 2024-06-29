@@ -1,5 +1,12 @@
 import socket
 import time
+import signal
+
+running = True
+def signal_handler(signal, frame):
+    global running
+    running = False
+signal.signal(signal.SIGINT, signal_handler)
 
 #Erstellung Client Socket, der die Daten vom Conv Server empfängt
 def statClientSocket():
@@ -9,7 +16,7 @@ def statClientSocket():
     statClient.connect(('127.0.0.1', 9998))
     print("[STAT] Connected to [CONV] server on port 9998 \n")
 
-    while True:
+    while running:
         try:
             conv_values = statClient.recv(1024).decode()
             if not conv_values:

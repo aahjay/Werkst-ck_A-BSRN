@@ -1,9 +1,16 @@
 import socket
+import signal
+
+running = True
+def signal_handler(signal, frame):
+    global running
+    running = False
+signal.signal(signal.SIGINT, signal_handler)
 
 #Empfangen und Verarbeiten der Stat Daten vom Report Server
 def reportHandleClient(clientSocket):
     try:
-        while True:
+        while running:
             statValues = clientSocket.recv(1024).decode()
             if not statValues:
                 break
@@ -21,7 +28,7 @@ def reportServer():
     serverSocket.bind(('0.0.0.0', 10000))
     serverSocket.listen(5)
     print("Report server is listening on port 10000")
-    while True:
+    while running:
         clientSocket, ClientAddress = serverSocket.accept()
         #print(f"Accepted connection from {ClientAddress}")
         reportHandleClient(clientSocket)
