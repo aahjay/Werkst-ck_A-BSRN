@@ -20,3 +20,6 @@ def conv():
     except KeyboardInterrupt:
         pass
 
+if __name__ == "__main__":
+    conv()
+

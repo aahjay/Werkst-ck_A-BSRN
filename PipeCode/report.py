@@ -9,11 +9,12 @@ def report():
                 stats = stat_report.readline().strip()
                 if stats:
                     mean, total = stats.split(',')
-                    print(f"Mittelwert: {mean}, Summe: {total}") # Statistische Werte aus der Pipe anzeigen
+                    print(f"Mean: {mean}, Total: {total}") # Statistische Werte aus der Pipe anzeigen
     except KeyboardInterrupt:
         pass
 
-
+if __name__ == "__main__":
+    report()
 
 
 

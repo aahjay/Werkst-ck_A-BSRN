@@ -17,5 +17,6 @@ def log():
     except KeyboardInterrupt:
         pass
 
-
+if __name__ == "__main__":
+    log()
 
