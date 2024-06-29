@@ -1,15 +1,33 @@
 import os
 import signal
 import sys
-import time
 
 # dictionary für die Prozess-Skripte
-scripts = {
-    "conv": "conv.py",
-    "log": "log.py",
-    "stat": "stat.py",
-    "report": "report.py"
-}
+
+input = input("Geben sie die zu verwendende Methode an: ")
+
+if input == "Message Queues":
+    scripts = {
+        "conv": "MessageQueuesCode/Conv.py",
+        "log": "MessageQueuesCode/Log.py",
+        "stat": "MessageQueuesCode/Stat.py",
+        "report": "MessageQueuesCode/Report.py"
+    }
+elif input == "Pipes":
+    scripts = {
+        "conv": "PipeCode/Conv.py",
+        "log": "PipeCode/Log.py",
+        "stat": "PipeCode/Stat.py",
+        "report": "PipeCode/Report.py"
+    }
+elif input == "TCP":
+    scripts = {
+        "conv": "TCPCode/Conv.py",
+        "log": "TCPCode/Log.py",
+        "stat": "TCPCode/Stat.py",
+        "report": "TCPCode/Report.py"
+    }
+
 
 # Liste der gestarteten Kindprozesse
 processes = []
@@ -18,7 +36,7 @@ def signal_handler(sig, frame):
     # Beenden aller gestarteten Prozesse
     for pid in processes:
         try:
-            print('-- terminating processes --')
+            print('\nterminating process: ' + str(pid))
             os.kill(pid, signal.SIGTERM)
         except OSError:
             pass
@@ -40,7 +58,6 @@ try:
     # Starten der einzelnen Prozesse
     for name, script in scripts.items():
         pid = fork_and_exec(script)
-        time.sleep(2)
         print (f'Starting {name} process...\n')
         processes.append(pid)
         
