@@ -1,7 +1,6 @@
 import os
 import signal
 import sys
-import time
 
 # dictionary für die Prozess-Skripte
 scripts = {
@@ -18,7 +17,7 @@ def signal_handler(sig, frame):
     # Beenden aller gestarteten Prozesse
     for pid in processes:
         try:
-            print('-- terminating processes --')
+            print('\nterminating process: ' + str(pid))
             os.kill(pid, signal.SIGTERM)
         except OSError:
             pass
@@ -40,7 +39,6 @@ try:
     # Starten der einzelnen Prozesse
     for name, script in scripts.items():
         pid = fork_and_exec(script)
-        time.sleep(2)
         print (f'Starting {name} process...\n')
         processes.append(pid)
         
