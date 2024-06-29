@@ -18,7 +18,7 @@ def signal_handler(sig, frame):
     # Beenden aller gestarteten Prozesse
     for pid in processes:
         try:
-            print('-- terminating processes --')
+            print(f'-- terminating process {pid} --')
             os.kill(pid, signal.SIGTERM)
         except OSError:
             pass

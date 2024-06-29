@@ -15,7 +15,7 @@ def reportHandleClient(clientSocket):
             if not statValues:
                 break
             mean, total = statValues.split(',')
-            print('[REPORT] \nmean: ' + mean + '\ntotal: '+ total)
+            print('[REPORT] \nmean: ' + mean + '\ntotal: '+ total + '\n')
     except Exception as e:
         print('[REPORT] error receiving data from [STAT]')
     finally:
