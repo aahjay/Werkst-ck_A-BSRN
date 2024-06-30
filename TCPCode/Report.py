@@ -2,10 +2,10 @@ import socket
 import signal
 
 running = True
-def signal_handler(signal, frame):
+def cleanup(signal, frame):
     global running
     running = False
-signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGINT, cleanup)
 
 #Empfangen und Verarbeiten der Stat Daten vom Report Server
 def reportHandleClient(clientSocket):
