@@ -1,6 +1,7 @@
 import os
 import signal
 import sys
+import time
 from multiprocessing import shared_memory
 
 # dictionary für die Prozess-Skripte
@@ -90,6 +91,7 @@ try:
     for name, script in scripts.items():
         pid = fork_and_exec(script)
         print (f'Starting {name} process...\n')
+        time.sleep(2)
         processes.append(pid)
         
     for pid in processes:
