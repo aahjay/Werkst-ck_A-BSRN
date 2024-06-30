@@ -4,7 +4,7 @@ import sys
 import time
 from multiprocessing import shared_memory
 
-# Dictionary, um Skripte ohne ".py" zu verwenden
+# Dictionary, um Skripte im Programm ohne ".py" zu verwenden
 scripts = {
     "conv": "conv.py",
     "log": "log.py",

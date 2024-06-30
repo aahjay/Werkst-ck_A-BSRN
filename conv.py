@@ -3,7 +3,7 @@ import random
 from multiprocessing import shared_memory, Semaphore
 
 def conv():
-    # Festlegung der Namen für die Shared Memory Segmente für log und stat
+    # Festlegung der Namen für die Shared Memory Segmente von log und stat
     SHM_NAME_LOG = "shm_log"
     SHM_NAME_STAT = "shm_stat"
 
