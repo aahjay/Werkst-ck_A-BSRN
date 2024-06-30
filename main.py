@@ -22,6 +22,7 @@ SHM_NAMES = ["shm_log", "shm_stat", "shm_stat_report"]
 def cleanup():
     for shm_name in SHM_NAMES:
         shm = shared_memory.SharedMemory(name=shm_name)
+        shm.close()
     # unlink() Funktion der Shared Memory Klasse dient zur Auslöschung des Shared Memory Segments
         shm.unlink()
 
@@ -30,8 +31,8 @@ def signal_handler(sig, frame):
     for pid in processes:
         os.kill(pid, signal.SIGTERM)
     #Aufruf der cleanup() Funktion -> alle Shared Memory Segmente werden geschlossen und ausgelöscht
-    print("cleaning up...")
     cleanup()
+    print("cleaning up...")
     sys.exit(0)
 
 
