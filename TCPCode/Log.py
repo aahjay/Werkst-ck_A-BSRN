@@ -3,10 +3,10 @@ import signal
 import time
 
 running = True
-def signal_handler(signal, frame):
+def cleanup(signal, frame):
     global running
     running = False
-signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGINT, cleanup)
 
 #Erstellung Client Socket zur Verbindung mit Conv
 def logClientSocket():
