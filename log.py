@@ -2,17 +2,17 @@ import socket
 import signal
 
 running = True
-def signal_handler(signal, frame):
+def cleanup(signal, frame):
     global running
     running = False
-signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGINT, cleanup)
 
 #Erstellung Client Socket zur Verbindung mit Conv
 def logClientSocket():
     while running:
         try:
             logClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            logClient.connect(('127.0.0.1', 9998))
+            logClient.connect(('127.0.0.1', 9998)) #Bindung an denselben Port wie Conv-Server
             print("[LOG] Connected to [CONV] server on port 9998 \n")
             break
         except ConnectionRefusedError:

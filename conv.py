@@ -6,10 +6,10 @@ import signal
 
 #cleanup für Signal-Handler aus main.py
 running = True
-def signal_handler(signal, frame):
+def cleanup(signal, frame):
     global running
     running = False
-signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGINT, cleanup)
 
 #erstellt zufällige Zahlen, die an Log und Stat übermittelt werden
 def convHandleClient(clientSocket):

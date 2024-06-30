@@ -3,10 +3,10 @@ import time
 import signal
 
 running = True
-def signal_handler(signal, frame):
+def cleanup(signal, frame):
     global running
     running = False
-signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGINT, cleanup)
 
 #Erstellung Client Socket, der die Daten vom Conv Server empfängt
 def statClientSocket():
