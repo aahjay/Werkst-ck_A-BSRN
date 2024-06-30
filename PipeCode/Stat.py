@@ -1,4 +1,5 @@
 import os
+import time
 
 if not os.path.exists('conv_to_stat'): #Pipe lesen, falls vorhanden
     pass
@@ -19,6 +20,7 @@ def stat():
                     mean = int(mean)
                     log_report.write(f"{mean},{total}\n")
                     log_report.flush()
+                    time.sleep(2)
     except KeyboardInterrupt:
         pass
 

@@ -16,7 +16,7 @@ def conv():
                 conv_to_log.flush() #Sicherstellen, dass Zahlen sofort in Datei geschrieben werden
                 conv_to_stat.write(f"{value}\n")
                 conv_to_stat.flush()
-                time.sleep(1)
+                time.sleep(2)
     except KeyboardInterrupt:
         pass
 

@@ -1,4 +1,5 @@
 import os
+import time
 
 # Benannte Pipe zum Lesen öffnen
 if not os.path.exists('conv_to_log'):
@@ -14,6 +15,7 @@ def log():
                     # Messwert in die Logdatei schreiben
                     logfile.write(f"{value}\n")
                     logfile.flush()  # Sicherstellen, dass die Daten sofort geschrieben werden
+                    time.sleep(2)
     except KeyboardInterrupt:
         pass
 

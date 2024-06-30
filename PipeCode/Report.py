@@ -1,4 +1,5 @@
 import os
+import time
 
 def report():
     try:
@@ -10,6 +11,7 @@ def report():
                 if stats:
                     mean, total = stats.split(',')
                     print(f"Mean: {mean}, Total: {total}") # Statistische Werte aus der Pipe anzeigen
+                    time.sleep(2)
     except KeyboardInterrupt:
         pass
 
