@@ -49,5 +49,5 @@ try:
 
     # Abfangen von Fehlern bei der Ausführung
 except Exception as e:
-    print("-- Fehler beim Starten der Prozesse --")
+    print("-- Error starting processes --")
     signal_handler(None, None)
